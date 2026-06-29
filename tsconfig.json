@@ -19,6 +19,14 @@
       }
     ],
     "paths": {
+      "@/app/*": ["./app/*"],
+      "@/components": ["./components"],
+      "@/components/*": ["./components/*"],
+      "@/content/*": ["./content/*"],
+      "@/lib": ["./lib"],
+      "@/lib/*": ["./lib/*"],
+      "@/types": ["./types"],
+      "@/types/*": ["./types/*"],
       "@/*": ["./*"]
     }
   },

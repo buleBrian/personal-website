@@ -1,26 +1,169 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+
+  --background: #fff9fb;
+  --background-soft: #fff3f7;
+  --foreground: #3f3a3d;
+  --muted-foreground: #766c72;
+
+  --card: #ffffff;
+  --card-foreground: var(--foreground);
+
+  --border: #f4dbe5;
+  --border-hover: #edc2d0;
+  --accent: #e9a9bf;
+  --accent-soft: #fff0f5;
+
+  --font-inter: "Inter";
+  --font-noto-sans-sc: "Noto Sans SC";
+  --font-sans: var(--font-inter), var(--font-noto-sans-sc), "Noto Sans SC",
+    "Inter", sans-serif;
+
+  --page-max-width: 72rem;
+  --page-gutter: clamp(1rem, 5vw, 3rem);
+  --section-space: clamp(4rem, 9vw, 7.5rem);
+
+  --radius-sm: 0.875rem;
+  --radius-md: 1.25rem;
+  --radius-lg: 1.75rem;
+  --radius-xl: 2.25rem;
+  --radius-pill: 999rem;
+
+  --shadow-soft: 0 16px 48px rgb(233 169 191 / 0.14);
+  --shadow-card: 0 12px 36px rgb(63 58 61 / 0.06);
+  --shadow-hover: 0 18px 48px rgb(233 169 191 / 0.18);
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-soft: var(--background-soft);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-border-hover: var(--border-hover);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+
+  --font-sans: var(--font-sans);
+
+  --container-page: var(--page-max-width);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+
+  --shadow-soft: var(--shadow-soft);
+  --shadow-card: var(--shadow-card);
+  --shadow-hover: var(--shadow-hover);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    background: var(--background);
+  }
+
+  body {
+    min-height: 100vh;
+    background: transparent;
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--accent-soft);
+    color: var(--foreground);
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .site-shell {
+    isolation: isolate;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  .site-main {
+    min-height: 100vh;
+  }
+
+  .page-shell {
+    width: min(100% - (var(--page-gutter) * 2), var(--page-max-width));
+    margin-inline: auto;
+  }
+
+  .section-space {
+    padding-block: var(--section-space);
+  }
+
+  .ui-button {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    background: var(--card);
+    color: var(--foreground);
+    padding-inline: 1rem;
+    font-weight: 500;
+    line-height: 1;
+    box-shadow: var(--shadow-card);
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      opacity 180ms ease,
+      transform 180ms ease;
+  }
+
+  .ui-button:hover {
+    border-color: var(--border-hover);
+    background: var(--accent-soft);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .ui-button:active {
+    transform: scale(0.98);
+  }
+
+  .ui-button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .ui-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--card);
+    color: var(--card-foreground);
+    box-shadow: var(--shadow-card);
+  }
+
+  .ui-card-interactive {
+    transition:
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      opacity 180ms ease,
+      transform 180ms ease;
+  }
+
+  .ui-card-interactive:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-hover);
+    transform: scale(1.01);
+  }
 }
