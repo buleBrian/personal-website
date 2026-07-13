@@ -8,7 +8,7 @@ export const siteConfig = {
     {
       id: "instagram",
       title: "Instagram",
-      href: "https://www.instagram.com/urbanwetdog/",
+      href: "https://www.instagram.com/urberdog/",
       type: "external",
       icon: "instagram",
     },
